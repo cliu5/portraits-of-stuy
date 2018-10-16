@@ -1,2 +1,1 @@
-# stuypedia
-The wikiSource for all your Stuyvesant Needs
+# portraits-of-stuy
