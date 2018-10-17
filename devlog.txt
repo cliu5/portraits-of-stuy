@@ -41,8 +41,9 @@ LESSONS LEARNED
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 << FIRST ENTRY >>
-firstL -- yyyy-mm-dd hh:mm
-- << PLACEHOLDER FOR DETAILS >>
+ivanZ -- 2018-10-16 10:19
+- Changed design doc so that site map was more readable and clear.
+- Changed design doc by removing the task for making the site aesthetically pleasing (functionality before vanity)
 
 << SECOND ENTRY >>
 firstL -- yyyy-mm-dd hh:mm
