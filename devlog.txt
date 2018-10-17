@@ -17,7 +17,6 @@ UNRESOLVED ISSUES
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 tinaW -- 2018-10-16 22:28
 The article (https://www.stilldrinking.org/programming-sucks) mentioned that in group projects, good code can easily turn bad when everyone in the group is rushing to add their own parts before the deadline.
 Therefore, we should set our own deadlines for the tasks well before the actual deadline  so we can take the time to understand each part of the code and find ways to improve it.
@@ -28,7 +27,7 @@ The article (https://www.stilldrinking.org/programming-sucks) mentioned that one
 raymondW -- 2018-10-17 01:38
 The article ("Programming Sucks") emphasized the importance of debugging and making sure that a programmer understands exactly what their code does. It is important to stay updated and read the documentation regularly "to see if they’ve been updated or broken" and that all the pieces of your program work together, as described in your component map. It is not okay to exploit a bug because it is dangerous in the sense that your program is not guaranteed to work later, and you will have to face the consequences, no matter how extravagant they might be. 
 
-jerryY -- 2018-10-17 7:10
+jerryY -- 2018-10-17 07:10
 The article ("Programming Sucks") commented on the actual current state of the internet as well, mentioning that many websites are quite litearlly hard-coded. These sites use sysadmins to constantly maintain these sites around the clock and make sure that the site won't crash even though all of the code is written horribly. This also raises the issue of security to users of the internet. I found this incredibly interesting, and I also believe that we should prioritize creating code that runs. Instead of additional features, we should spend more time testing so that our code doesn't become like code which runs rampant on the internet. 
 
 MID-DEVELOPMENT DESIGN CHANGES
@@ -55,5 +54,10 @@ ivanZ -- 2018-10-16 22:42
 - Changed design doc so that site map was more readable and clear.
 - Changed design doc by removing the task for making the site aesthetically pleasing (functionality before vanity).
 - Added anticipated deadlines to the design doc.
+
+raymondW -- 2018-10-17 13:16
+- Added a root route that shows the splash page when the user is not logged in.
+- Added a base HTML template
+- Added the HTML child template for the splash page
 
 ==============================================================

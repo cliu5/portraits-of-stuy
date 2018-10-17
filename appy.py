@@ -1,20 +1,17 @@
-# Pandas - Alex Liu and Ivan Zhang
+# Team WXYZ (Tina Wong, Raymond Wu, Jerry Ye, Ivan Zhang)
 # SoftDev1 pd07
-# K #10: Jinja Tuning ...
-# 2018-09-21
+# P00 -- Da Art of Storytellin'
+# 2018-10-17
 
 from flask import Flask, render_template
-from util import random_occ # Imports the random occupation generator from util
-
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/occupations")
-def occupations():
-    occupation_dict = util.makeOccupationDict()
-    
-	 return render_template("occupations.html", random_occ = util.selectRandom(), occ_dictionary = occupation_dict)
+def landingPage():
+    # TODO if logged in, show stories
+    # not logged in
+    return render_template("index.html")
 
 if __name__ == "__main__":
-	app.debug = True
+	app.debug = True  # TODO set to False when done!
 	app.run()
