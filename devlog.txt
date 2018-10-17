@@ -40,6 +40,10 @@ LESSONS LEARNED
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+tinaW -- 2018-10-16 22:28
+The article mentioned that in group projects, good code can easily turn bad when everyone in the group is rushing to add their own parts before the deadline.
+Therefore, we should set our own deadlines for the tasks well before the actual deadline so we can take the time to understand each part of the code and find ways to improve it.
+
 << FIRST ENTRY >>
 ivanZ -- 2018-10-16 10:19
 - Changed design doc so that site map was more readable and clear.
