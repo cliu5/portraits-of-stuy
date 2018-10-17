@@ -42,7 +42,7 @@ LESSONS LEARNED
 
 tinaW -- 2018-10-16 22:28
 The article (https://www.stilldrinking.org/programming-sucks) mentioned that in group projects, good code can easily turn bad when everyone in the group is rushing to add their own parts before the deadline.
-Therefore, we should **set our own deadlines for the tasks well before the actual deadline** so we can **take the time to understand each part of the code** and **find ways to improve it**.
+Therefore, we should *set our own deadlines for the tasks well before the actual deadline* so we can *take the time to understand each part of the code* and *find ways to improve it*.
 
 ivanZ -- 2018-10-16 22:42
 - Changed design doc so that site map was more readable and clear.
@@ -50,7 +50,7 @@ ivanZ -- 2018-10-16 22:42
 - Added anticipated deadlines to the design doc.
 
 ivanZ -- 2018-10-16 22:50
-The article (https://www.stilldrinking.org/programming-sucks) mentioned that one of the double edged swords of collaboration is the multitude of ideas. People have new and innovative ideas that may however conflict. In order to resolve these conflicts it is **crucial to COMMUNICATE** to make sure everyone is on the same page. Furthermore there are standards but people don't follow them! To resolve this is, **comment your code** and **make your code more readable**. 
+The article (https://www.stilldrinking.org/programming-sucks) mentioned that one of the double edged swords of collaboration is the multitude of ideas. People have new and innovative ideas that may however conflict. In order to resolve these conflicts it is *crucial to COMMUNICATE* to make sure everyone is on the same page. Furthermore there are standards but people don't follow them! To resolve this is, *comment your code* and *make your code more readable*. 
 
 
 << FIRST ENTRY >>
