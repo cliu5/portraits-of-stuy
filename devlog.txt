@@ -60,4 +60,7 @@ raymondW -- 2018-10-17 13:16
 - Added a base HTML template
 - Added the HTML child template for the splash page
 
+jerryY -- 2018-10-17 13:16
+- Added python file for database creation of users and stories
+
 ==============================================================
