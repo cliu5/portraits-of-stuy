@@ -9,9 +9,9 @@ def createStoriesTable(cur):
     cur.execute(command)
 def main():
     DB_FILE= "foo.db"
-	db = sqlite3.connect(DB_FILE) 
-	c = db.cursor()               
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
     createUserTable(c)
     createStoriesTable(c)
-	db.close()  #close database
+    db.close()  #close database
 main()
