@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <!--- This is the webpage title --->
+    <title>Occupations</title>
+  </head>
+  
+  <body>
+    
+    <h1>Website for all your Occupational Needs</h1>
+    
+    <!--- This is the random occupation --->
+    <h2> Check it out! <b> {{random_occ}} </b> </h2>
+    
+    <table border = "1">
+      
+      <tr>
+	<!--- This is the table headings --->
+  	<th>Occupations</th>
+  	<th>Percentage of Workforce</th>	
+  	<th>Helpful Links</th>
+	
+      </tr>
+
+      <!--- A loop that prints a table row in the format: OCCUPATION, PERCENTAGE, LINK --->
+      {% for occ in occ_dictionary.keys() %}
+      <tr>
+	
+  	<td>{{occ}}</td>
+  	<td>{{occ_dictionary[occ][0] * 100}}</td>
+  	<td><a href = {{occ_dictionary[occ][1]}}> {{occ_dictionary[occ][1]}} </a></td>
+	
+      </tr>
+      {% endfor %}
+      
+    </table>
+
+  </body>
+  
+</html>
+  
