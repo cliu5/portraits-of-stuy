@@ -1,2 +1,1 @@
-# Flask-Starter-Kit
-Starter Kit!
+# portraits-of-stuy

@@ -22,13 +22,13 @@ The article (https://www.stilldrinking.org/programming-sucks) mentioned that in 
 Therefore, we should set our own deadlines for the tasks well before the actual deadline  so we can take the time to understand each part of the code and find ways to improve it.
 
 ivanZ -- 2018-10-16 22:50
-The article (https://www.stilldrinking.org/programming-sucks) mentioned that one of the double edged swords of collaboration is the multitude of ideas. People have new and innovative ideas that may however conflict. In order to resolve these conflicts it is  crucial to COMMUNICATE to make sure everyone is on the same page. Furthermore there are standards but people don't follow them! To resolve this is, comment your code  and  make your code more readable. 
+The article (https://www.stilldrinking.org/programming-sucks) mentioned that one of the double edged swords of collaboration is the multitude of ideas. People have new and innovative ideas that may however conflict. In order to resolve these conflicts it is  crucial to COMMUNICATE to make sure everyone is on the same page. Furthermore there are standards but people don't follow them! To resolve this is, comment your code  and  make your code more readable.
 
 raymondW -- 2018-10-17 01:38
-The article ("Programming Sucks") emphasized the importance of debugging and making sure that a programmer understands exactly what their code does. It is important to stay updated and read the documentation regularly "to see if they’ve been updated or broken" and that all the pieces of your program work together, as described in your component map. It is not okay to exploit a bug because it is dangerous in the sense that your program is not guaranteed to work later, and you will have to face the consequences, no matter how extravagant they might be. 
+The article ("Programming Sucks") emphasized the importance of debugging and making sure that a programmer understands exactly what their code does. It is important to stay updated and read the documentation regularly "to see if they’ve been updated or broken" and that all the pieces of your program work together, as described in your component map. It is not okay to exploit a bug because it is dangerous in the sense that your program is not guaranteed to work later, and you will have to face the consequences, no matter how extravagant they might be.
 
 jerryY -- 2018-10-17 07:10
-The article ("Programming Sucks") commented on the actual current state of the internet as well, mentioning that many websites are quite litearlly hard-coded. These sites use sysadmins to constantly maintain these sites around the clock and make sure that the site won't crash even though all of the code is written horribly. This also raises the issue of security to users of the internet. I found this incredibly interesting, and I also believe that we should prioritize creating code that runs. Instead of additional features, we should spend more time testing so that our code doesn't become like code which runs rampant on the internet. 
+The article ("Programming Sucks") commented on the actual current state of the internet as well, mentioning that many websites are quite litearlly hard-coded. These sites use sysadmins to constantly maintain these sites around the clock and make sure that the site won't crash even though all of the code is written horribly. This also raises the issue of security to users of the internet. I found this incredibly interesting, and I also believe that we should prioritize creating code that runs. Instead of additional features, we should spend more time testing so that our code doesn't become like code which runs rampant on the internet.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,5 +62,10 @@ raymondW -- 2018-10-17 13:16
 
 jerryY -- 2018-10-17 13:16
 - Added python file for database creation of users and stories
+
+tinaW -- 2018-10-17 22:53
+- Added account login and authentication
+- Added login form and page
+- Updated index
 
 ==============================================================
