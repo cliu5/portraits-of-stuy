@@ -68,4 +68,6 @@ tinaW -- 2018-10-17 22:53
 - Added login form and page
 - Updated index
 
+tinaW -- 2018-10-17 17:18
+- Added backend of creating a new story
 ==============================================================

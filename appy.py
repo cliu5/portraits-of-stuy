@@ -29,7 +29,7 @@ def authenticate():
     user = request.form['username']
     command = "SELECT username, password FROM users WHERE username={}".format(repr(user))
     c.execute(command)
-    results = c.fetchall()
+    results = c.fetchall() # results contains the username and its corresponding password that matches the username from the form
     if results == []:
         flash("Username invalid. Try logging in again or registering for an account.")
         db.close()  #close database
@@ -49,6 +49,22 @@ def authenticate():
 def logout():
     session.pop('username') # ends session
     return redirect(url_for('landingPage'))
+
+@app.route('/create_story')
+def create_story():
+    # title = request.form['title']
+    # body = request.form['body']
+    # latestAddition = body
+    title = "WXYZ Story" # dummy data until page templating
+    body = "hello there!" # dummy data until page templating
+    latestAddition = body
+    DB_FILE= "foo.db"
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("INSERT INTO stories (title, body, latestAddition) VALUES (\"{}\", \"{}\" , \"{}\")".format(title, body, latestAddition) )
+    db.commit()
+    db.close()
+
 
 if __name__ == "__main__":
 	app.debug = True  # TODO set to False when done!
