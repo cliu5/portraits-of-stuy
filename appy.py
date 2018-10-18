@@ -19,6 +19,34 @@ def landingPage():
 @app.route("/login")
 def login():
     return render_template("login.html")
+#a route that receives requests from the signup form and creates users by connecting to the sqlite3 database
+@app.route("/create_user", methods=["POST"])
+def create_user():
+    user = request.form['username']
+    password = request.form['password']
+    confirmedPassword = request.form['confirmedPassword']#Passwords are not yet hashed
+    if password != confirmedPassword:#Checks to make sure two passwords entered are the same
+        flash("Please make sure the passwords you enter are the same.")
+        return redirect(url_for('signup'))
+    DB_FILE= "foo.db"
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "INSERT INTO users (username,password) VALUES ( \"{}\" , \"{}\")".format(user, password)
+    try:#Try will fail if username already exists in the database
+        c.execute(command)
+        db.commit()
+        db.close()
+        flash("Your account has been created")
+        return redirect(url_for('login'))
+    except:
+        flash("Please enter another username. The one you entered is already in the database.")
+        db.commit()
+        db.close()
+        return redirect(url_for('signup'))
+#a route that renders the sign up form
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
 
 # a route that receives the login form and checks if the login information is correct
 @app.route("/auth", methods=["POST"]) #assign fxn to route
