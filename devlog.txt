@@ -70,4 +70,8 @@ tinaW -- 2018-10-17 22:53
 
 tinaW -- 2018-10-17 17:18
 - Added backend of creating a new story
+
+jerryY -- 2018-10-17 13:16
+- Added account sign up functionality
+- Added account signup form 
 ==============================================================
