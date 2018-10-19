@@ -68,4 +68,7 @@ tinaW -- 2018-10-17 22:53
 - Added login form and page
 - Updated index
 
+raymondW -- 2018-10-18 13:18
+- Added function to create contributions table in database
+
 ==============================================================
