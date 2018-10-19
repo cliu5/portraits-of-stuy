@@ -78,4 +78,8 @@ raymondW -- 2018-10-18 13:18
 tinaW -- 2018-10-17 17:18
 - Added backend of creating a new story
 
+jerryY -- 2018-10-19 13:16
+- Fixed username and password creation
+
+
 ==============================================================
