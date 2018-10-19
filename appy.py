@@ -25,6 +25,12 @@ def create_user():
     user = request.form['username']
     password = request.form['password']
     confirmedPassword = request.form['confirmedPassword']#Passwords are not yet hashed
+    if user == "":
+        flash("Please make sure to enter a username!")
+        return redirect(url_for('signup'))
+    if password == "":
+        flash("Please make sure to enter a password!")
+        return redirect(url_for('signup'))
     if password != confirmedPassword:#Checks to make sure two passwords entered are the same
         flash("Please make sure the passwords you enter are the same.")
         return redirect(url_for('signup'))
