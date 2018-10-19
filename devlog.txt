@@ -68,7 +68,14 @@ tinaW -- 2018-10-17 22:53
 - Added login form and page
 - Updated index
 
+jerryY -- 2018-10-17 13:16
+- Added account sign up functionality
+- Added account signup form 
+
 raymondW -- 2018-10-18 13:18
 - Added function to create contributions table in database
+
+tinaW -- 2018-10-17 17:18
+- Added backend of creating a new story
 
 ==============================================================
