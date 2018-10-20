@@ -19,6 +19,7 @@ def landingPage():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
 #a route that receives requests from the signup form and creates users by connecting to the sqlite3 database
 @app.route("/create_user", methods=["POST"])
 def create_user():
@@ -86,11 +87,16 @@ def logout():
 
 @app.route('/create_story')
 def create_story():
-    # title = request.form['title']
-    # body = request.form['body']
-    # latestAddition = body
-    title = "WXYZ Story" # dummy data until page templating
-    body = "hello there!" # dummy data until page templating
+    if 'username' in session:
+        return render_template("create_story.html")
+    else:
+        flash("Please login before you create story.")
+        return redirect(url_for('login'))
+
+@app.route('/add_new_story', methods=["POST"])
+def add_new_story():
+    title = request.form['title']
+    body = request.form['body']
     latestAddition = body
     DB_FILE= "foo.db"
     db = sqlite3.connect(DB_FILE)
@@ -98,6 +104,8 @@ def create_story():
     c.execute("INSERT INTO stories (title, body, latestAddition) VALUES (\"{}\", \"{}\" , \"{}\")".format(title, body, latestAddition) )
     db.commit()
     db.close()
+    flash("Story created!")
+    return redirect(url_for('landingPage'))
 
 
 if __name__ == "__main__":
