@@ -5,12 +5,6 @@ Create a Story
 {% endblock %}
 
 {% block content %}
-{% set msgs = get_flashed_messages() %}
-  {% for each in msgs %}
-  {{ each }}
-  <br>
-  {% endfor %}
-  <br>
 <h1> Create a Story </h1>
 <form action="/add_new_story" method="POST">
   Title: <input type="text" name="title"> <br><br>

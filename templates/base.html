@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
   <head>
     {% block head %}
@@ -7,6 +7,12 @@
   </head>
 
   <body>
+    {% set msgs = get_flashed_messages() %}
+      {% for each in msgs %}
+      {{ each }}
+      <br>
+      {% endfor %}
+      <br>
     {% block content %}
     {% endblock %}
     {% block footer %}

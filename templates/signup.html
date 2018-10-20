@@ -5,12 +5,6 @@ Sign Up
 {% endblock %}
 
 {% block content %}
-{% set msgs = get_flashed_messages() %}
-  {% for each in msgs %}
-  {{ each }}
-  <br>
-  {% endfor %}
-  <br>
   <h1> Register </h1>
   <form action="/create_user" method="POST">
     Username: <input type="text" name="username"> <br><br>

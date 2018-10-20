@@ -107,7 +107,6 @@ def add_new_story():
     flash("Story created!")
     return redirect(url_for('landingPage'))
 
-
 if __name__ == "__main__":
 	app.debug = True  # TODO set to False when done!
 	app.run()

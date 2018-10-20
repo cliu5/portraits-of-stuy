@@ -70,16 +70,19 @@ tinaW -- 2018-10-17 22:53
 
 jerryY -- 2018-10-17 13:16
 - Added account sign up functionality
-- Added account signup form 
+- Added account signup form
 
 raymondW -- 2018-10-18 13:18
 - Added function to create contributions table in database
 
-tinaW -- 2018-10-17 17:18
+tinaW -- 2018-10-18 17:18
 - Added backend of creating a new story
 
 jerryY -- 2018-10-19 13:16
 - Fixed username and password creation
 
-
+tinaW -- 2018-10-19 23:58
+- Added creating a story template
+- Connected frontend story creation template with backend
+- Factored out repetitive code from templates to base.html
 ==============================================================
