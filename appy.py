@@ -1,11 +1,12 @@
 # Team WXYZ (Tina Wong, Raymond Wu, Jerry Ye, Ivan Zhang)
 # SoftDev1 pd07
 # P00 -- Da Art of Storytellin'
-# 2018-10-17
+# 2018-10-22
 
 import sqlite3   #enable control of an sqlite database
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from os import urandom
+import util.db_maker as db_maker
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -50,6 +51,7 @@ def create_user():
         db.commit()
         db.close()
         return redirect(url_for('signup'))
+
 #a route that renders the sign up form
 @app.route("/signup")
 def signup():
@@ -108,5 +110,6 @@ def add_new_story():
     return redirect(url_for('landingPage'))
 
 if __name__ == "__main__":
-	app.debug = True  # TODO set to False when done!
-	app.run()
+        app.debug = True  # TODO set to False when done!
+        db_maker.createDatabase()
+        app.run()
