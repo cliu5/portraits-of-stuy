@@ -103,6 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# sqlite database files
+*.db
 
 # BOSS XTRAS (credits to Mr. Brown!)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,3 +128,4 @@ ehthumbs.db
 **/*[\\/\:;*?!'"<>|$º•¶§∞¢£]*
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+B
