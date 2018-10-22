@@ -13,7 +13,26 @@ app.secret_key = urandom(32)
 
 @app.route("/")
 def landingPage():
-    # TODO if logged in, show stories
+    if 'username' in session:
+        # TODO if logged in, show stories
+        DB_FILE= "foo.db"
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
+        for data in c.fetchall():
+            id_for_user = data[0]
+        c.execute("SELECT story_id FROM contributions WHERE user_id={}".format(repr(id_for_user)))
+        stories = []
+        contributions = c.fetchall()
+        for data in contributions:
+            c.execute("SELECT title, body FROM stories WHERE id={}".format(data[0]))
+            for story_info in c.fetchall():
+                # print(story_info)
+                a_story = [story_info[0], story_info[1]]
+                stories.append(a_story)
+        db.close()
+        # print(stories)
+        return render_template("index.html", stories_contributed=stories)
     # not logged in
     return render_template("index.html")
 
@@ -104,6 +123,13 @@ def add_new_story():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("INSERT INTO stories (title, body, latestAddition) VALUES (\"{}\", \"{}\" , \"{}\")".format(title, body, latestAddition) )
+    c.execute("SELECT max(id) FROM stories")
+    for data in c.fetchall():
+        id_for_story = data[0]
+    c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
+    for data in c.fetchall():
+        id_for_user = data[0]
+    c.execute("INSERT INTO contributions (user_id, story_id) VALUES (\"{}\", \"{}\")".format(id_for_user, id_for_story) )
     db.commit()
     db.close()
     flash("Story created!")

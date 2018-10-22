@@ -12,6 +12,21 @@ Welcome
 <a href="/create_story">Create Your Own Story</a>
 <br>
 <a href="/logout">Logout</a>
+<br>
+<h1> View all of your stories below </h1>
+<table>
+  <tr>
+    <th>Story Title</th>
+    <th>Content</th>
+</tr>
+{% for story in stories_contributed %}
+<tr>
+<td>{{ story[0] }}</td>
+<td>{{ story[1] }}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
 {% else %}
 <a href="/login">Login</a>
 <br>
