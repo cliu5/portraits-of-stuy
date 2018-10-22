@@ -85,4 +85,7 @@ tinaW -- 2018-10-19 23:58
 - Added creating a story template
 - Connected frontend story creation template with backend
 - Factored out repetitive code from templates to base.html
+
+tinaW -- 2018-10-22 13:15
+- Added view all stories on landing page feature
 ==============================================================
