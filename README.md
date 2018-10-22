@@ -30,9 +30,11 @@ In your virtual environment, install the following pip packages:
 
 Now, run the python file to start the Flask server:
 ```
-(dc) $ python appy.py
+(dc) $ python3 appy.py
 ```
 
 Finally, open your web browser and open `localhost:5000`.
+
+To terminal your server instance, type <kbd> CTRL </kbd> + <kbd> C </kbd>.
 
 To exit your virtual environment, run the command `$ deactivate`.
