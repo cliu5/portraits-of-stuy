@@ -5,7 +5,7 @@ def createUserTable(cur):
     cur.execute(command)
 
 def createStoriesTable(cur):
-    command = "CREATE TABLE IF NOT EXISTS stories (id INTEGER PRIMARY KEY, title TEXT NOT NULL, body TEXT NOT NULL, latestAddition TEXT NOT NULL)"
+    command = "CREATE TABLE IF NOT EXISTS stories (id INTEGER PRIMARY KEY, title TEXT NOT NULL, body TEXT NOT NULL, latestAddition TEXT NOT NULL, rating INTEGER)"
     cur.execute(command)
 
 def createContributionsTable(cur):
