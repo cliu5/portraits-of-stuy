@@ -14,24 +14,23 @@ app.secret_key = urandom(32)
 @app.route("/")
 def landingPage():
     if 'username' in session:
-        # TODO if logged in, show stories
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
         c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
         for data in c.fetchall():
             id_for_user = data[0]
-        c.execute("SELECT story_id FROM contributions WHERE user_id={}".format(repr(id_for_user)))
-        stories = []
-        contributions = c.fetchall()
+            c.execute("SELECT story_id FROM contributions WHERE user_id={}".format(repr(id_for_user)))
+            stories = []
+            contributions = c.fetchall()
         for data in contributions:
             c.execute("SELECT title, latestAddition, id FROM stories WHERE id={}".format(data[0]))
             for story_info in c.fetchall():
                 # print(story_info)
                 a_story = [story_info[0], story_info[1], story_info[2]]
                 stories.append(a_story)
-        db.close()
-        # print(stories)
+                db.close()
+                # print(stories)
         return render_template("index.html", stories_contributed=stories)
 
     # not logged in
@@ -112,11 +111,20 @@ def create_story():
     if 'username' in session:
         return render_template("create_story.html")
     else:
-        flash("Please login before you create story.")
+        flash("You must be logged in to see that page.")
         return redirect(url_for('login'))
 
 @app.route('/add_new_story', methods=["POST"])
 def add_new_story():
+
+    # must be logged in to see this page
+    if 'username' in session:
+        pass
+    # not logged in
+    else:
+        flash("You must be logged in to see that page.")
+        return redirect(url_for('login'))
+    
     title = request.form['title']
     body = request.form['body']
     latestAddition = body
@@ -127,17 +135,26 @@ def add_new_story():
     c.execute("SELECT max(id) FROM stories")
     for data in c.fetchall():
         id_for_story = data[0]
-    c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
+        c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
     for data in c.fetchall():
         id_for_user = data[0]
-    c.execute("INSERT INTO contributions (user_id, story_id) VALUES (\"{}\", \"{}\")".format(id_for_user, id_for_story) )
-    db.commit()
-    db.close()
-    flash("Story created!")
+        c.execute("INSERT INTO contributions (user_id, story_id) VALUES (\"{}\", \"{}\")".format(id_for_user, id_for_story) )
+        db.commit()
+        db.close()
+        flash("Story created!")
     return redirect(url_for('landingPage'))
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
+
+    # must be logged in to see this page
+    if 'username' in session:
+        pass
+    # not logged in
+    else:
+        flash("You must be logged in to see that page.")
+        return redirect(url_for('login'))
+
     if request.method == 'GET':
         return render_template("search.html")
 
@@ -154,7 +171,83 @@ def search():
         db.close()
 
         return render_template("search_results.html",
-                                   stories = results)
+                               stories = results)
+
+@app.route('/story/<story_id>', methods=["GET", "POST"])
+def show_story(story_id):
+
+    # must be logged in to see this page
+    if 'username' in session:
+        pass
+    # not logged in
+    else:
+        flash("You must be logged in to see that page.")
+        return redirect(url_for('login'))
+    
+    if request.method == 'GET':
+        title = ""
+        viewable_story = ""
+        can_view_form = False
+        
+        DB_FILE= "foo.db"
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        command = "SELECT title, body, latestAddition from stories WHERE id={}".format(story_id)
+        c.execute(command)
+        story = c.fetchone()
+        title = story[0]
+        body = story[1]
+        latestAddition = story[2]
+
+        command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
+        c.execute(command)
+        user_id = c.fetchone()[0]
+
+        command = "SELECT * from contributions WHERE user_id={} AND story_id={}".format(user_id,story_id)
+        c.execute(command)
+        result = c.fetchone()
+
+        db.close()
+
+        if result == None: # user has not interacted w/ story
+            viewable_story = latestAddition
+            can_view_form = True
+        else:
+            viewable_story = body
+            can_view_form = False
+            
+        return render_template("story.html",
+                               story_title = title,
+                               viewable_story = viewable_story,
+                               can_view_form = can_view_form)
+    else: # POST method
+        DB_FILE= "foo.db"
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        
+        command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
+        c.execute(command)
+        user_id = c.fetchone()[0]
+
+        command = "INSERT INTO contributions (user_id, story_id) VALUES ( \"{}\" , \"{}\")".format(user_id, story_id)
+        c.execute(command)
+
+        command = "SELECT body from stories WHERE id={}".format(story_id)
+        c.execute(command)
+        result = c.fetchone()
+        body = result[0]
+
+        latestAddition = request.form['addition']
+        body += " " + request.form['addition']
+        
+        command = "UPDATE stories SET body=\"{}\", latestAddition=\"{}\" WHERE id={}".format( body, latestAddition, story_id )
+        c.execute(command)
+        
+        db.commit()
+        db.close()
+        
+        return redirect(url_for('show_story', story_id=story_id))  # refresh page
+    
 
 if __name__ == "__main__":
     app.debug = True  # TODO set to False when done!

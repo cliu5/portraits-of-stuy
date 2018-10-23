@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<h1> Portraits of Stuy </h1>
+
+<h2> {{ story_title }} </h2>
+
+{{ viewable_story }}
+
+{% if can_view_form %}
+<br><br>
+<form method="POST">
+  <textarea type="text" name="addition" placeholder="Your addition to the story..."></textarea> <br>
+  <input type="submit" name="sub1">
+</form>
+{% endif %}
+
+{% endblock %}
