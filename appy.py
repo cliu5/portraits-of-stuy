@@ -13,25 +13,24 @@ app.secret_key = urandom(32)
 
 @app.route("/")
 def landingPage():
+    '''This function renders the template for the landing page. If logged in, the landing page will display the title and latest addition of the stories that the user has contributed to.'''
     if 'username' in session:
-        # TODO if logged in, show stories
+        # if logged in, show stories
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
         c.execute("SELECT id FROM users WHERE username={}".format(repr(session["username"])))
         for data in c.fetchall():
-            id_for_user = data[0]
-        c.execute("SELECT story_id FROM contributions WHERE user_id={}".format(repr(id_for_user)))
-        stories = []
+            id_for_user = data[0] # get the id of the user in session
+        c.execute("SELECT story_id FROM contributions WHERE user_id={}".format(repr(id_for_user))) # get the ids of the stories that the user has contributed to
+        stories = [] # a list for all the stories that will be displayed
         contributions = c.fetchall()
         for data in contributions:
             c.execute("SELECT title, latestAddition, id FROM stories WHERE id={}".format(data[0]))
             for story_info in c.fetchall():
-                # print(story_info)
-                a_story = [story_info[0], story_info[1], story_info[2]]
-                stories.append(a_story)
+                a_story = [story_info[0], story_info[1], story_info[2]] # creates a list of one story's title, body, and latest addition
+                stories.append(a_story) # appends each list of a story to stories list
         db.close()
-        # print(stories)
         return render_template("index.html", stories_contributed=stories)
 
     # not logged in
@@ -39,28 +38,29 @@ def landingPage():
 
 @app.route("/login")
 def login():
+    '''This function renders the template for the login page.'''
     return render_template("login.html")
 
-#a route that receives requests from the signup form and creates users by connecting to the sqlite3 database
 @app.route("/create_user", methods=["POST"])
 def create_user():
+    '''This function receives requests about the user's username and password from the signup form and creates users by connecting and adding to the sqlite3 database. If the registration is successful, the sign up page will redirect to the login page. Otherwise, errors will flash on the signup page.'''
     user = request.form['username']
     password = request.form['password']
-    confirmedPassword = request.form['confirmedPassword']#Passwords are not yet hashed
+    confirmedPassword = request.form['confirmedPassword'] #passwords are not yet hashed
     if user == "":
         flash("Please make sure to enter a username!")
         return redirect(url_for('signup'))
     if password == "":
         flash("Please make sure to enter a password!")
         return redirect(url_for('signup'))
-    if password != confirmedPassword:#Checks to make sure two passwords entered are the same
+    if password != confirmedPassword: # checks to make sure two passwords entered are the same
         flash("Please make sure the passwords you enter are the same.")
         return redirect(url_for('signup'))
     DB_FILE= "foo.db"
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect(DB_FILE) # connecting to database
     c = db.cursor()
     command = "INSERT INTO users (username,password) VALUES ( \"{}\" , \"{}\")".format(user, password)
-    try:#Try will fail if username already exists in the database
+    try: #try will fail if username already exists in the database
         c.execute(command)
         db.commit()
         db.close()
@@ -72,9 +72,9 @@ def create_user():
         db.close()
         return redirect(url_for('signup'))
 
-#a route that renders the sign up form
 @app.route("/signup")
 def signup():
+    '''This function renders the template for the sign up page, which includes the sign up form.'''
     return render_template("signup.html")
 
 # a route that receives the login form and checks if the login information is correct
