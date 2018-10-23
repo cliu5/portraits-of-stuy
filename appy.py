@@ -25,10 +25,10 @@ def landingPage():
         stories = []
         contributions = c.fetchall()
         for data in contributions:
-            c.execute("SELECT title, body FROM stories WHERE id={}".format(data[0]))
+            c.execute("SELECT title, latestAddition, id FROM stories WHERE id={}".format(data[0]))
             for story_info in c.fetchall():
                 # print(story_info)
-                a_story = [story_info[0], story_info[1]]
+                a_story = [story_info[0], story_info[1], story_info[2]]
                 stories.append(a_story)
         db.close()
         # print(stories)

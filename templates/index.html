@@ -15,16 +15,18 @@ Welcome
 <br><br>
 <a href="/logout">Logout</a>
 <br>
-<h1> View all of your stories below </h1>
+<h1> View stories you've contributed to below </h1>
 <table border="1">
   <tr>
     <th>Story Title</th>
-    <th>Content</th>
+    <th>Latest addition</th>
+    <th>Link</th>
   </tr>
   {% for story in stories_contributed %}
   <tr>
     <td>{{ story[0] }}</td>
     <td>{{ story[1] }}</td>
+    <td><a href="/story/{{ story[2] }}"> {{ story[2] }}</a></td>
   </tr>
   {% endfor %}
 </table>
