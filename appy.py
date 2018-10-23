@@ -25,14 +25,15 @@ def landingPage():
         stories = []
         contributions = c.fetchall()
         for data in contributions:
-            c.execute("SELECT title, body FROM stories WHERE id={}".format(data[0]))
+            c.execute("SELECT title, latestAddition, id FROM stories WHERE id={}".format(data[0]))
             for story_info in c.fetchall():
                 # print(story_info)
-                a_story = [story_info[0], story_info[1]]
+                a_story = [story_info[0], story_info[1], story_info[2]]
                 stories.append(a_story)
         db.close()
         # print(stories)
         return render_template("index.html", stories_contributed=stories)
+
     # not logged in
     return render_template("index.html")
 
@@ -135,7 +136,27 @@ def add_new_story():
     flash("Story created!")
     return redirect(url_for('landingPage'))
 
+@app.route('/search', methods=["GET", "POST"])
+def search():
+    if request.method == 'GET':
+        return render_template("search.html")
+
+    else: # POST method
+        query = request.form['search-query']
+        command = "SELECT id, title, latestAddition from stories WHERE title like '%{}%' OR latestAddition like '%{}%'".format(query, query)
+
+        DB_FILE= "foo.db"
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        c.execute(command)
+        results = c.fetchall()
+        db.commit()
+        db.close()
+
+        return render_template("search_results.html",
+                                   stories = results)
+
 if __name__ == "__main__":
-        app.debug = True  # TODO set to False when done!
-        db_maker.createDatabase()
-        app.run()
+    app.debug = True  # TODO set to False when done!
+    db_maker.createDatabase()
+    app.run()

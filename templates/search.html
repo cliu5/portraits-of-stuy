@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<h1> Portraits of Stuy </h1>
+
+<h3> Search </h3>
+
+<form method="POST">
+  <input type="text" name="search-query" placeholder="Search query">
+  <input type="submit" name="sub1">
+</form>
+
+{% block search_results %}
+{% endblock search_results %}
+
+{% endblock %}
