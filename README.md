@@ -35,6 +35,6 @@ Now, run the python file to start the Flask server:
 
 Finally, open your web browser and open `localhost:5000`.
 
-To terminal your server instance, type <kbd> CTRL </kbd> + <kbd> C </kbd>.
+To terminate your server instance, type <kbd> CTRL </kbd> + <kbd> C </kbd>.
 
 To exit your virtual environment, run the command `$ deactivate`.
