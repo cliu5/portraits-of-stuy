@@ -107,4 +107,10 @@ tinaW -- 2018-10-23 22:17
 raymondW -- 2018-10-24 12:20
 - Ensured consistency in snake case in app.py
 - Added check for invalid story_id
+
+tinaW -- 2018-10-24 12:31
+- Added check for empty story title and content when creating a story
+
+jerryY -- 2018-10-24 12:40
+- Added comments to appy.py
 ==============================================================
