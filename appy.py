@@ -128,6 +128,15 @@ def add_new_story():
     title = request.form['title']
     body = request.form['body']
     latestAddition = body
+    print(title)
+    print(repr(body))
+    if title == "":
+        flash("Please make sure to enter a title!")
+        return redirect(url_for('create_story'))
+    if body == " ":
+        flash("Please make sure to enter content for the story!")
+        return redirect(url_for('create_story'))
+
     DB_FILE= "foo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
