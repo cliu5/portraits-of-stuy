@@ -113,4 +113,8 @@ tinaW -- 2018-10-24 12:31
 
 jerryY -- 2018-10-24 12:40
 - Added comments to appy.py
+
+raymondW -- 2018-10-24 15:33
+- Added page that lists stories user can contribute to
+
 ==============================================================
