@@ -97,10 +97,17 @@ raymondW -- 2018-10-22 23:34
 - Added search feature to website (Pull Request 1)
 - Added links to stories on landing page
 
-raymondW -- 2018-10-23 14:
+raymondW -- 2018-10-23 17:00
 - Added individual story pages (If user has not interacted with story, show latest addition and form to add to story; else show entire story)
 - Added check to not be able to access certain webpages (i.e. story pages) unless logged in
 
 tinaW -- 2018-10-23 22:17
 - Added docstrings and comments for functions
+
+raymondW -- 2018-10-24 12:20
+- Ensured consistency in snake case in app.py
+- Added check for invalid story_id
+
+tinaW -- 2018-10-24 12:31
+- Added check for empty story title and content when creating a story
 ==============================================================
