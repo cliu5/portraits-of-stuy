@@ -10,6 +10,10 @@
 
 <h2> {{ story_title }} </h2>
 
+{% if can_view_form %}
+<p> <em>Latest addition:</em> </p>
+{% endif %}
+
 {{ viewable_story }}
 
 {% if can_view_form %}

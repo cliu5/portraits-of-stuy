@@ -139,9 +139,9 @@ def add_new_story():
     for data in c.fetchall():
         id_for_user = data[0]
         c.execute("INSERT INTO contributions (user_id, story_id) VALUES (\"{}\", \"{}\")".format(id_for_user, id_for_story) )
-        db.commit() # saves changes to database
-        db.close() # closes database
-        flash("Story created!")
+    db.commit() # saves changes to database
+    db.close() # closes database
+    flash("Story created!")
     return redirect(url_for('landing_page'))
 
 @app.route('/search', methods=["GET", "POST"])
@@ -255,6 +255,43 @@ def show_story(story_id):
 
         return redirect(url_for('show_story', story_id=story_id))  # refresh page
 
+@app.route('/contribute')
+def show_contributable_stories():
+
+    # must be logged in to see this page
+    if 'username' in session:
+        pass
+    # not logged in
+    else:
+        flash("You must be logged in to see that page.")
+        return redirect(url_for('login'))
+
+    DB_FILE= "foo.db"
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    
+    command = "SELECT id FROM users WHERE username={}".format(repr(session["username"]))
+    c.execute(command)
+    ID = c.fetchone()[0]
+
+    command = "SELECT story_id FROM contributions WHERE user_id={}".format(ID)
+    c.execute(command)
+    contributed = c.fetchall()
+
+    valueString = "("
+    for tuple in contributed:
+        valueString += str(tuple[0]) + ","
+    valueString = valueString[::-1].replace(",", "", 1)[::-1] + ")"
+
+    print (valueString)
+    command = "SELECT id, title, latestAddition from stories WHERE id NOT IN {}".format(valueString)
+    print (command)
+    c.execute(command)
+    stories = c.fetchall()
+
+    db.close()
+    return render_template("contribute.html", stories_contributed=stories)
+        
 
 if __name__ == "__main__":
     app.debug = True  # TODO set to False when done!

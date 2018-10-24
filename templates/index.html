@@ -9,13 +9,20 @@ Welcome
 <h3> Share your story... or half of it! </h3>
 
 {% if session['username'] %}
-<a href="/search">Search</a>
-<br>
 <a href="/create_story">Create Your Own Story</a>
+<br>
+
+<a href="/contribute">Contribute to Other Stories</a>
 <br><br>
+
+<a href="/search">Search</a>
+<br><br>
+
 <a href="/logout">Logout</a>
 <br>
+
 <h1> View stories you've contributed to below </h1>
+
 <table border="1">
   <tr>
     <th>Story Title</th>
@@ -30,10 +37,13 @@ Welcome
   </tr>
   {% endfor %}
 </table>
+
 <br>
+
 {% else %}
 <a href="/login">Login</a>
 <br>
 <a href="/signup">Register</a>
 {% endif %}
+
 {% endblock %}
