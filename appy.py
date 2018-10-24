@@ -79,6 +79,7 @@ def signup():
 # a route that receives the login form and checks if the login information is correct
 @app.route("/auth", methods=["POST"]) #assign fxn to route
 def authenticate():
+    '''This function accesses the existing database to authenticate the user by creating a session if it currently exists in the database. If username and password combination does not exist, redirects user to login page. '''
     DB_FILE= "foo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -103,11 +104,13 @@ def authenticate():
 # a route that removes the current user from the session and redirects the user back to the login page from home
 @app.route('/logout')
 def logout():
+    '''This function pops the username from the session, logging the user out. Redirects user to landing page.'''
     session.pop('username') # ends session
     return redirect(url_for('landingPage'))
 
 @app.route('/create_story')
 def create_story():
+    '''This function renders html form for create story if the user is logged in. If user is not logged in, redirects user to login page.'''
     if 'username' in session:
         return render_template("create_story.html")
     else:
@@ -116,7 +119,7 @@ def create_story():
 
 @app.route('/add_new_story', methods=["POST"])
 def add_new_story():
-
+    '''This function is the route that the create_story.html page directs the user to after submitting a prompt. If user is loggedin and query is complete, creates a new story'''
     # must be logged in to see this page
     if 'username' in session:
         pass
@@ -146,7 +149,7 @@ def add_new_story():
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
-
+    '''This function searches the database for stories and renders html page with search results'''
     # must be logged in to see this page
     if 'username' in session:
         pass
@@ -175,7 +178,7 @@ def search():
 
 @app.route('/story/<story_id>', methods=["GET", "POST"])
 def show_story(story_id):
-
+    '''This function shows the story by ID'''
     # must be logged in to see this page
     if 'username' in session:
         pass
