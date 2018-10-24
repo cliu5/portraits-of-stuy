@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 @app.route("/")
-def landingPage():
+def landing_page():
     '''This function renders the template for the landing page. If logged in, the landing page will display the title and latest addition of the stories that the user has contributed to.'''
     if 'username' in session:
         DB_FILE= "foo.db"
@@ -98,13 +98,13 @@ def authenticate():
         else:
             session["username"] = request.form["username"]
             db.close()  #close database
-            return redirect(url_for('landingPage'))
+            return redirect(url_for('landing_page'))
 
 # a route that removes the current user from the session and redirects the user back to the login page from home
 @app.route('/logout')
 def logout():
     session.pop('username') # ends session
-    return redirect(url_for('landingPage'))
+    return redirect(url_for('landing_page'))
 
 @app.route('/create_story')
 def create_story():
@@ -142,7 +142,7 @@ def add_new_story():
         db.commit() # saves changes to database
         db.close() # closes database
         flash("Story created!")
-    return redirect(url_for('landingPage'))
+    return redirect(url_for('landing_page'))
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
@@ -195,6 +195,13 @@ def show_story(story_id):
         command = "SELECT title, body, latestAddition from stories WHERE id={}".format(story_id)
         c.execute(command)
         story = c.fetchone()
+
+        # invalid story_id
+        if story == None:
+            flash("This story does not exist.")
+            return redirect(url_for('landing_page'))
+
+        # valid story_id ... story found in db
         title = story[0]
         body = story[1]
         latestAddition = story[2]
