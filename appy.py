@@ -27,7 +27,6 @@ def landingPage():
         for data in contributions:
             c.execute("SELECT title, latestAddition, id FROM stories WHERE id={}".format(data[0]))
             for story_info in c.fetchall():
-                # print(story_info)
                 a_story = [story_info[0], story_info[1], story_info[2]]
                 stories.append(a_story)
         db.close()
@@ -125,7 +124,7 @@ def add_new_story():
     else:
         flash("You must be logged in to see that page.")
         return redirect(url_for('login'))
-    
+
     title = request.form['title']
     body = request.form['body']
     latestAddition = body
@@ -140,8 +139,8 @@ def add_new_story():
     for data in c.fetchall():
         id_for_user = data[0]
         c.execute("INSERT INTO contributions (user_id, story_id) VALUES (\"{}\", \"{}\")".format(id_for_user, id_for_story) )
-        db.commit()
-        db.close()
+        db.commit() # saves changes to database
+        db.close() # closes database
         flash("Story created!")
     return redirect(url_for('landingPage'))
 
@@ -168,8 +167,8 @@ def search():
         c = db.cursor()
         c.execute(command)
         results = c.fetchall()
-        db.commit()
-        db.close()
+        db.commit() # saves changes to database
+        db.close() # closes database
 
         return render_template("search_results.html",
                                stories = results)
@@ -184,12 +183,12 @@ def show_story(story_id):
     else:
         flash("You must be logged in to see that page.")
         return redirect(url_for('login'))
-    
+
     if request.method == 'GET':
         title = ""
         viewable_story = ""
         can_view_form = False
-        
+
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
@@ -216,7 +215,7 @@ def show_story(story_id):
         else:
             viewable_story = body
             can_view_form = False
-            
+
         return render_template("story.html",
                                story_title = title,
                                viewable_story = viewable_story,
@@ -225,7 +224,7 @@ def show_story(story_id):
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-        
+
         command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
         c.execute(command)
         user_id = c.fetchone()[0]
@@ -240,15 +239,15 @@ def show_story(story_id):
 
         latestAddition = request.form['addition']
         body += " " + request.form['addition']
-        
+
         command = "UPDATE stories SET body=\"{}\", latestAddition=\"{}\" WHERE id={}".format( body, latestAddition, story_id )
         c.execute(command)
-        
+
         db.commit()
         db.close()
-        
+
         return redirect(url_for('show_story', story_id=story_id))  # refresh page
-    
+
 
 if __name__ == "__main__":
     app.debug = True  # TODO set to False when done!
