@@ -9,6 +9,7 @@ Welcome
 <h3> Share your story... or half of it! </h3>
 
 {% if session['username'] %}
+<h2> Welcome, {{ session['username'] }}!</h2>
 <a href="/create_story">Create Your Own Story</a>
 <br>
 
