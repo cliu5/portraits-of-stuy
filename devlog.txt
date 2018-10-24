@@ -110,4 +110,7 @@ raymondW -- 2018-10-24 12:20
 
 tinaW -- 2018-10-24 12:31
 - Added check for empty story title and content when creating a story
+
+jerryY -- 2018-10-24 12:40
+- Added comments to appy.py
 ==============================================================
