@@ -9,6 +9,7 @@
 <h1> Portraits of Stuy </h1>
 
 <h2> {{ story_title }} </h2>
+<h3> Rating: {{ avg_rating }}/5 stars </h3>
 
 {% if can_view_form %}
 <p> <em>Latest addition:</em> </p>
@@ -22,6 +23,22 @@
   <textarea type="text" name="addition" placeholder="Your addition to the story..."></textarea> <br>
   <input type="submit" name="sub1">
 </form>
+{% else %}
+<br><br>
+<p> Rate This Story: </p>
+<form method="POST">
+  <select name="story_rating">
+    <option value="0">None</option>
+    <option value="1">*</option>
+    <option value="2">**</option>
+    <option value="3">***</option>
+    <option value="4">****</option>
+    <option value="5">*****</option>
+  </select>
+  <br><br>
+  <input type="submit" name="submit">
+</form>
+<br>
 {% endif %}
 
 {% endblock %}
