@@ -254,7 +254,6 @@ def show_story(story_id):
             user_id = c.fetchone()[0]
 
             rating = request.form['story_rating']
-            print(rating)
             command = "SELECT user_id FROM ratings WHERE user_id={} AND story_id={}".format(user_id, story_id)
             c.execute(command)
             if c.fetchone() == None:
@@ -270,12 +269,9 @@ def show_story(story_id):
             sum = 0
             count = 0
             for data in c.fetchall():
-                print(data)
                 sum += data[0]
                 count += 1
             avg = sum / count
-            print(sum)
-            print(count)
 
             command = "UPDATE stories SET avg_rating=\"{}\" WHERE id={}".format( avg, story_id )
             c.execute(command)
