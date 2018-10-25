@@ -117,4 +117,7 @@ jerryY -- 2018-10-24 12:40
 raymondW -- 2018-10-24 15:33
 - Added page that lists stories user can contribute to
 
+tinaW -- 2018-10-25 12:00
+- Ensured consistency in snake case in db_maker.py
+- Added ratings table
 ==============================================================
