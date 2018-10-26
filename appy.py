@@ -187,7 +187,7 @@ def search():
 
 @app.route('/story/<story_id>', methods=["GET", "POST"])
 def show_story(story_id):
-    '''This function shows the story by ID'''
+    '''This function shows the story by ID and either displays a form to add the latest addition to a story or a form to rate the story.'''
     # must be logged in to see this page
     if 'username' in session:
         pass
@@ -247,16 +247,16 @@ def show_story(story_id):
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-        #  if request.form['addition'] != None ...
+
         if request.form.get('story_rating') != None:
             command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
             c.execute(command)
-            user_id = c.fetchone()[0]
+            user_id = c.fetchone()[0] # get id of user
 
             rating = request.form['story_rating']
             command = "SELECT user_id FROM ratings WHERE user_id={} AND story_id={}".format(user_id, story_id)
             c.execute(command)
-            if c.fetchone() == None:
+            if c.fetchone() == None: # if user has not rated the story before, add a row of data. else, update the row
                 command = "INSERT INTO ratings (user_id, story_id, user_rating) VALUES ( \"{}\" , \"{}\", \"{}\" )".format(user_id, story_id, rating)
                 c.execute(command)
             else:
@@ -266,6 +266,7 @@ def show_story(story_id):
             command = "SELECT user_rating FROM ratings WHERE story_id={}".format(story_id)
             c.execute(command)
 
+            # average the ratings
             sum = 0
             count = 0
             for data in c.fetchall():
