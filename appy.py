@@ -172,7 +172,7 @@ def search():
 
     else: # POST method
         query = request.form['search-query']
-        command = "SELECT id, title, latestAddition from stories WHERE title like '%{}%' OR latestAddition like '%{}%'".format(query, query)
+        command = "SELECT id, title, latestAddition, avg_rating from stories WHERE title like '%{}%' OR latestAddition like '%{}%'".format(query, query)
 
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)

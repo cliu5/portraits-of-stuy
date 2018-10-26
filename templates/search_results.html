@@ -11,16 +11,17 @@ Search Results
     <th> Title </th>
     <th> Latest addition </th>
     <th> Link </th>
+    <th> Rating </th>
   </tr>
 
   <br>
-  
-  {% for id, title, latestAddition in stories %}
+
+  {% for id, title, latestAddition, avg_rating in stories %}
   <tr>
     <td> {{ title }} </td>
     <td> {{ latestAddition }} </td>
     <td> <a href="/story/{{ id }}"> {{ id }} </a> </td>
-    <!-- TODO add rating -->
+    <td> {{ avg_rating }} </td>
   </tr>
   {% endfor %}
 

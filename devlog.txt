@@ -125,4 +125,7 @@ tinaW -- 2018-10-25 18:15
 - Finished rating stories feature
 - Updated template that shows stories to include rating
 - Added comments
+
+tinaW -- 2018-10-26 10:56
+- Added rating to search results
 ==============================================================
