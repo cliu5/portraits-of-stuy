@@ -172,7 +172,7 @@ def search():
 
     else: # POST method
         query = request.form['search-query']
-        command = "SELECT id, title, latestAddition from stories WHERE title like '%{}%' OR latestAddition like '%{}%'".format(query, query)
+        command = "SELECT id, title, latestAddition, avg_rating from stories WHERE title like '%{}%' OR latestAddition like '%{}%'".format(query, query)
 
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
@@ -187,7 +187,7 @@ def search():
 
 @app.route('/story/<story_id>', methods=["GET", "POST"])
 def show_story(story_id):
-    '''This function shows the story by ID'''
+    '''This function shows the story by ID and either displays a form to add the latest addition to a story or a form to rate the story.'''
     # must be logged in to see this page
     if 'username' in session:
         pass
@@ -195,6 +195,7 @@ def show_story(story_id):
     else:
         flash("You must be logged in to see that page.")
         return redirect(url_for('login'))
+
 
     if request.method == 'GET':
         title = ""
@@ -204,7 +205,7 @@ def show_story(story_id):
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-        command = "SELECT title, body, latestAddition from stories WHERE id={}".format(story_id)
+        command = "SELECT title, body, latestAddition, avg_rating from stories WHERE id={}".format(story_id)
         c.execute(command)
         story = c.fetchone()
 
@@ -217,6 +218,7 @@ def show_story(story_id):
         title = story[0]
         body = story[1]
         latestAddition = story[2]
+        avg_rating = story[3]
 
         command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
         c.execute(command)
@@ -238,29 +240,62 @@ def show_story(story_id):
         return render_template("story.html",
                                story_title = title,
                                viewable_story = viewable_story,
-                               can_view_form = can_view_form)
+                               can_view_form = can_view_form,
+                               avg_rating = avg_rating)
     else: # POST method
+
         DB_FILE= "foo.db"
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
 
-        command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
-        c.execute(command)
-        user_id = c.fetchone()[0]
+        if request.form.get('story_rating') != None:
+            command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
+            c.execute(command)
+            user_id = c.fetchone()[0] # get id of user
 
-        command = "INSERT INTO contributions (user_id, story_id) VALUES ( \"{}\" , \"{}\")".format(user_id, story_id)
-        c.execute(command)
+            rating = request.form['story_rating']
+            command = "SELECT user_id FROM ratings WHERE user_id={} AND story_id={}".format(user_id, story_id)
+            c.execute(command)
+            if c.fetchone() == None: # if user has not rated the story before, add a row of data. else, update the row
+                command = "INSERT INTO ratings (user_id, story_id, user_rating) VALUES ( \"{}\" , \"{}\", \"{}\" )".format(user_id, story_id, rating)
+                c.execute(command)
+            else:
+                command = "UPDATE ratings SET user_rating=\"{}\" WHERE story_id={} AND user_id={}".format(rating, story_id, user_id )
+                c.execute(command)
 
-        command = "SELECT body from stories WHERE id={}".format(story_id)
-        c.execute(command)
-        result = c.fetchone()
-        body = result[0]
+            command = "SELECT user_rating FROM ratings WHERE story_id={}".format(story_id)
+            c.execute(command)
 
-        latestAddition = request.form['addition']
-        body += " " + request.form['addition']
+            # average the ratings
+            sum = 0
+            count = 0
+            for data in c.fetchall():
+                sum += data[0]
+                count += 1
+            avg = sum / count
 
-        command = "UPDATE stories SET body=\"{}\", latestAddition=\"{}\" WHERE id={}".format( body, latestAddition, story_id )
-        c.execute(command)
+            command = "UPDATE stories SET avg_rating=\"{}\" WHERE id={}".format( avg, story_id )
+            c.execute(command)
+            flash("Rating of story added!")
+
+        else:
+            command = "SELECT id from users WHERE username={}".format(repr(session["username"]))
+            c.execute(command)
+            user_id = c.fetchone()[0]
+
+            command = "INSERT INTO contributions (user_id, story_id) VALUES ( \"{}\" , \"{}\")".format(user_id, story_id)
+            c.execute(command)
+
+            command = "SELECT body from stories WHERE id={}".format(story_id)
+            c.execute(command)
+            result = c.fetchone()
+            body = result[0]
+
+            latestAddition = request.form['addition']
+            body += " " + request.form['addition']
+
+            command = "UPDATE stories SET body=\"{}\", latestAddition=\"{}\" WHERE id={}".format( body, latestAddition, story_id )
+            c.execute(command)
 
         db.commit()
         db.close()
@@ -281,7 +316,7 @@ def show_contributable_stories():
     DB_FILE= "foo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    
+
     command = "SELECT id FROM users WHERE username={}".format(repr(session["username"]))
     c.execute(command)
     ID = c.fetchone()[0]
@@ -303,9 +338,9 @@ def show_contributable_stories():
 
     db.close()
     return render_template("contribute.html", stories_contributed=stories)
-        
+
 
 if __name__ == "__main__":
     app.debug = True  # TODO set to False when done!
-    db_maker.createDatabase()
+    db_maker.create_database()
     app.run()
