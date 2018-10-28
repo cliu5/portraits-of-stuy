@@ -31,19 +31,20 @@ raymondW -- 2018-10-17 01:38
 The article ("Programming Sucks") emphasized the importance of debugging and making sure that a programmer understands exactly what their code does. It is important to stay updated and read the documentation regularly "to see if they’ve been updated or broken" and that all the pieces of your program work together, as described in your component map. It is not okay to exploit a bug because it is dangerous in the sense that your program is not guaranteed to work later, and you will have to face the consequences, no matter how extravagant they might be.
 
 jerryY -- 2018-10-17 07:10
-The article ("Programming Sucks") commented on the actual current state of the internet as well, mentioning that many websites are quite litearlly hard-coded. These sites use sysadmins to constantly maintain these sites around the clock and make sure that the site won't crash even though all of the code is written horribly. This also raises the issue of security to users of the internet. I found this incredibly interesting, and I also believe that we should prioritize creating code that runs. Instead of additional features, we should spend more time testing so that our code doesn't become like code which runs rampant on the internet.
+The article ("Programming Sucks") commented on the actual current state of the internet as well, mentioning that many websites are quite literally hard-coded. These sites use sysadmins to constantly maintain these sites around the clock and make sure that the site won't crash even though all of the code is written horribly. This also raises the issue of security to users of the internet. I found this incredibly interesting, and I also believe that we should prioritize creating code that runs. Instead of additional features, we should spend more time testing so that our code doesn't become like code which runs rampant on the internet.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- << PLACEHOLDER FOR DETAILS >>
-
+tinaW -- 2018-10-28 16:35
+We decided not to include tiered accounts for the site because it was not a crucial core feature.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 raymondW -- 2018-10-28 16:20
-Using keys to success in order to flesh out all of the architectural and design choices in the beginning really allowed us to work more efficient in that we were all kept on the same page as we worked in different elements in the project. Whenever we had questions, we were able to resort to a hard copy of diagrams that were easy to digest, which proved to be invaluable to us. 
+Using keys to success in order to flesh out all of the architectural and design choices in the beginning really allowed us to work more efficient in that we were all kept on the same page as we worked in different elements in the project. Whenever we had questions, we were able to resort to a hard copy of diagrams that were easy to digest, which proved to be invaluable to us.
 
-
+tinaW -- 2018-10-28 16:31
+Communication was definitely important. When working on a new feature for the site, using the class time to discuss with the group how we wanted to implement the feature and how it would impact current functioning features was helpful.
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
 \:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
@@ -137,5 +138,8 @@ tinaW -- 2018-10-26 10:56
 - Added rating to search results
 
 raymondW -- 2018-10-28 16:27
+- Added points in the Zone of Reflection (above)
+
+tinaW -- 2018-10-28 16:37
 - Added points in the Zone of Reflection (above)
 ==============================================================
