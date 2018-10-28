@@ -8,12 +8,15 @@ Portraits of Stuy
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- << PLACEHOLDER FOR DETAILS >>
+raymondW -- 2018-10-28 14:22
+Fortunately, our team did not have major obstacles that greatly inhibited our progress as we worked on this project. From the start, we made it a clear objective to try to avoid anything that might hinder our progress by using tools we learned such as using keys to success, incremental development, and pair programming. Many of our conversations were focused on design choices, with how these choices would make our jobs easier or harder later on. We were able to think analytically about our tasks and learn in this way.
 
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- << PLACEHOLDER FOR DETAILS >>
+raymondW -- 2018-10-28 14:25
+Our team was divided on whether we should seed data (stories, user credentials, etc.) in the web app after the Flask server was run. We ultimately decided that to show our project in the most authentic way, we can write a separate Python file to insert filler data in our database (/util/seed_data.py), but not call this file in appy.py. If the situation calls for it, we can seed data by manually running seed_data.py from the terminal.
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,7 +40,8 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- << PLACEHOLDER FOR DETAILS >>
+raymondW -- 2018-10-28 16:20
+Using keys to success in order to flesh out all of the architectural and design choices in the beginning really allowed us to work more efficient in that we were all kept on the same page as we worked in different elements in the project. Whenever we had questions, we were able to resort to a hard copy of diagrams that were easy to digest, which proved to be invaluable to us. 
 
 
  ______   ______   __   __   __       ______   _______
@@ -131,4 +135,7 @@ tinaW -- 2018-10-25 18:15
 
 tinaW -- 2018-10-26 10:56
 - Added rating to search results
+
+raymondW -- 2018-10-28 16:27
+- Added points in the Zone of Reflection (above)
 ==============================================================
