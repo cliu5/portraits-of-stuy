@@ -5,6 +5,8 @@
 ## Usage
 
 **System requirements**: You will need Python 3 as well as SQLite 3 on your system. If, in your terminal, running `$ python3` invokes the Python 3 interpreter, and running `$ sqlite3` opens the SQLite 3 shell, you are good to go.
+* [Install sqlite3](https://mislav.net/rails/install-sqlite3/ "Install sqlite3")
+* [Install python3](https://realpython.com/installing-python/ "Install python3")
 
 First, clone this repository:
 ```
