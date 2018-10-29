@@ -131,8 +131,8 @@ def add_new_story():
     title = request.form['title']
     body = request.form['body']
     latestAddition = body
-    print(title)
-    print(repr(body))
+    #print(title)
+    #print(repr(body))
     if title == "":
         flash("Please make sure to enter a title!")
         return redirect(url_for('create_story'))
@@ -330,9 +330,9 @@ def show_contributable_stories():
         valueString += str(tuple[0]) + ","
     valueString = valueString[::-1].replace(",", "", 1)[::-1] + ")"
 
-    print (valueString)
+    #print (valueString)
     command = "SELECT id, title, latestAddition from stories WHERE id NOT IN {}".format(valueString)
-    print (command)
+    #print (command)
     c.execute(command)
     stories = c.fetchall()
 
