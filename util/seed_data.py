@@ -1,5 +1,7 @@
 import sqlite3
+import db_maker
 
+db_maker.create_database()
 DB_FILE= "foo.db"
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
