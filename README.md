@@ -39,4 +39,13 @@ Finally, open your web browser and open `localhost:5000`.
 
 To terminate your server instance, type <kbd> CTRL </kbd> + <kbd> C </kbd>.
 
+Optionally, if you would like to seed testing data into your data base, please create the database by following all of the instructions above and then run the seed_data file: 
+```
+(dc) $ python3 util/seed_data.py
+```
+Afterwards, you may again start the Flask server and find sample testing data fed in: 
+```
+(dc) $ python3 appy.py
+```
+
 To exit your virtual environment, run the command `$ deactivate`.
