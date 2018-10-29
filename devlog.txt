@@ -48,6 +48,11 @@ Using keys to success in order to flesh out all of the architectural and design 
 
 tinaW -- 2018-10-28 16:31
 Communication was definitely important. When working on a new feature for the site, using the class time to discuss with the group how we wanted to implement the feature and how it would impact current functioning features was helpful.
+
+jerryY -- 2018-10-27 7:00
+Creating a thourough design doc allowed us to stay organized throughout the project. It helped IZ, our project manager, delegate tasks to us more efficiently and track what each of us were doing everyday. 
+
+
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
 \:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
@@ -147,5 +152,9 @@ tinaW -- 2018-10-28 16:37
 - Added points in the Zone of Reflection (above)
 
 jerryY -- 2018-10-28 16:55
+- Added points in the Zone of Reflection (above)
+
+jerryY -- 2018-10-27 7:00
+- Updated Readme
 - Added points in the Zone of Reflection (above)
 ==============================================================
